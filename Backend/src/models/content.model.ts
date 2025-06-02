@@ -1,9 +1,11 @@
 import mongoose, { Schema, Types } from "mongoose";
 
 const contentSchema = new Schema({
-  link: { type: String, required: true },
-  type: { type: String, required: true },
   title: { type: String, required: true },
-  tags: [{ type: Types.ObjectId, ref: "Tag" }],
+  link: { type: String, required: true },
   userId: { type: Types.ObjectId, ref: "User", required: true },
+  type: { type: String },
+  tags: [{ type: Types.ObjectId, ref: "Tag" }],
 });
+const Content = mongoose.model("Content", contentSchema);
+export default Content;
