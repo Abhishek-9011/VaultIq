@@ -1,1 +1,1 @@
-{"root":["./src/middleware.ts","./src/server.ts","./src/config/token.ts","./src/models/content.model.ts","./src/models/link.model.ts","./src/models/tags.model.ts","./src/models/user.model.ts"],"version":"5.8.3"}
+{"root":["./src/middleware.ts","./src/server.ts","./src/utils.ts","./src/config/token.ts","./src/models/content.model.ts","./src/models/link.model.ts","./src/models/tags.model.ts","./src/models/user.model.ts"],"version":"5.8.3"}

@@ -1,14 +1,12 @@
-import "./App.css";
-import { Button } from "./components/ui/Buttons";
-import AddIcon from "./icons/AddIcon";
+import React from 'react'
+import Dashboard from './pages/Dashboard'
 
-function App() {
+const App = () => {
   return (
-    <>
-      <Button size="md" variant="primary" text="Share" startIcon={<AddIcon size="lg"/>} />
-      <Button size="md" variant="secondary" text="Add to content" />
-    </>
-  );
+    <div>
+      <Dashboard/>
+    </div>
+  )
 }
 
-export default App; 
+export default App
