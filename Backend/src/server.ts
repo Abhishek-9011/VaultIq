@@ -5,12 +5,13 @@ import Content from "./models/content.model.js";
 import Link from "./models/link.model.js";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
-
+import cors from 'cors'
 import { JWT_PASSWORD } from "./config/Token.js";
 import { userMiddleware } from "./middleware.js";
 import { random } from "./utils.js";
 const app = express();
 app.use(express.json());
+app.use(cors());
 async function connectDb() {
   try {
     await mongoose.connect(
@@ -52,12 +53,12 @@ app.post("/api/v1/signin", async (req, res) => {
   }
 });
 app.post("/api/v1/content", userMiddleware, async (req, res) => {
-  const { title, link } = req.body;
+  const { title, link, type } = req.body;
   try {
     await Content.create({
       title,
       link,
-      //
+      type,
       // @ts-ignore
       userId: req.userId,
       tags: [],

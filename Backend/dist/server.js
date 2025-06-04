@@ -9,11 +9,13 @@ const content_model_js_1 = __importDefault(require("./models/content.model.js"))
 const link_model_js_1 = __importDefault(require("./models/link.model.js"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const mongoose_1 = __importDefault(require("mongoose"));
+const cors_1 = __importDefault(require("cors"));
 const Token_js_1 = require("./config/Token.js");
 const middleware_js_1 = require("./middleware.js");
 const utils_js_1 = require("./utils.js");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use((0, cors_1.default)());
 async function connectDb() {
     try {
         await mongoose_1.default.connect("mongodb+srv://abhishek774901:Jq3k8nyWi9zfxtS9@cluster0.xt6sa.mongodb.net/VaultIq");
@@ -53,12 +55,12 @@ app.post("/api/v1/signin", async (req, res) => {
     }
 });
 app.post("/api/v1/content", middleware_js_1.userMiddleware, async (req, res) => {
-    const { title, link } = req.body;
+    const { title, link, type } = req.body;
     try {
         await content_model_js_1.default.create({
             title,
             link,
-            //
+            type,
             // @ts-ignore
             userId: req.userId,
             tags: [],
