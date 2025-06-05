@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
+//@ts-ignore
+const dbUrl: string = process.env.MONGO_DB_URL;
 export async function connectDb() {
   try {
-    await mongoose.connect(
-      "mongodb+srv://abhishek774901:Jq3k8nyWi9zfxtS9@cluster0.xt6sa.mongodb.net/VaultIq"
-    );
+    await mongoose.connect(dbUrl);
     console.log("Connected to MongoDB");
   } catch (error) {
     console.error("Database connection error:", error);

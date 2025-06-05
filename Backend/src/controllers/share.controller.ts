@@ -33,7 +33,7 @@ export const generateShareLink = async (req: any, res: any) => {
   }
 };
 
-export const getShareLink = async (req:any, res:any) => {
+export const getShareLink = async (req: any, res: any) => {
   const hash = req.params.shareLink;
   const link = await Link.findOne({ hash });
   if (!link) {
@@ -42,7 +42,7 @@ export const getShareLink = async (req:any, res:any) => {
     });
     return;
   }
-  const content = await Content.findOne({ userId: link.userId });
+  const content = await Content.find({ userId: link.userId });
   const user = await User.findOne({ _id: link.userId });
   res.json({
     //@ts-ignore

@@ -22,7 +22,7 @@ export const useContent = () => {
   };
   useEffect(() => {
     refresh();
-    let interval = setInterval(refresh, 10 * 1000);
+    let interval = setInterval(refresh, 10 * 2000);
     return () => {
       clearInterval(interval);
     };

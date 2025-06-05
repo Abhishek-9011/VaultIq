@@ -2,7 +2,7 @@ import { JWT_PASSWORD } from "../config/Token";
 import User from "../models/user.model";
 import jwt from "jsonwebtoken";
 
-export const signup = async (req:any, res:any) => {
+export const signup = async (req: any, res: any) => {
   const { username, password } = req.body;
   try {
     await User.create({
@@ -15,7 +15,7 @@ export const signup = async (req:any, res:any) => {
   }
 };
 
-export const signin = async (req:any, res:any) => {
+export const signin = async (req: any, res: any) => {
   const { username, password } = req.body;
   try {
     const existingUser = await User.findOne({ username, password });
@@ -24,6 +24,7 @@ export const signin = async (req:any, res:any) => {
         {
           id: existingUser._id,
         },
+        // @ts-ignore
         JWT_PASSWORD
       );
       res.json({ message: "user signed in successfully", token: token });

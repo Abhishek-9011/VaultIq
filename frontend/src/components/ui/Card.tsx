@@ -9,7 +9,7 @@ interface CardProps {
   title: string;
   link: string;
   type: "twitter" | "youtube";
-  onDelete: (id: string) => void;
+  onDelete?: (id: string) => void;
 }
 
 const Card = ({ id, title, link, type }: CardProps) => {

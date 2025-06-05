@@ -48,7 +48,7 @@ const getShareLink = async (req, res) => {
         });
         return;
     }
-    const content = await content_model_1.default.findOne({ userId: link.userId });
+    const content = await content_model_1.default.find({ userId: link.userId });
     const user = await user_model_1.default.findOne({ _id: link.userId });
     res.json({
         //@ts-ignore
