@@ -7,13 +7,17 @@ import Sidebar from "../components/ui/Sidebar";
 import { useContent } from "../hooks/useContent";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import DeleteIcon from "../icons/DeleteIcon";
+import ShareIcon from "../icons/ShareIcon";
 
 function Dashboard() {
   const [modalOpen, setModelOpen] = useState(false);
-  const { contents, refresh } = useContent();
+  const { contents, refresh,handleDelete } = useContent();
   useEffect(() => {
     refresh();
   }, [modalOpen]);
+  ///@ts-ignore
+  
   return (
     <div>
       <Sidebar />
@@ -42,21 +46,21 @@ function Dashboard() {
                 },
                 {
                   headers: {
-                    "Authorization": localStorage.getItem("token"),
+                    Authorization: localStorage.getItem("token"),
                   },
                 }
               );
               const shareUrl = `http://localhost:5173/share/${response.data.hash}`;
               alert(shareUrl);
             }}
-            startIcon={<AddIcon size="md" />}
+            startIcon={<ShareIcon />}
           />
         </div>
 
         <div className="flex flex-wrap gap-4">
-          {contents.map(({ title, link, type }) => (
-            <Card title={title} link={link} type={type} />
-          ))}
+          {contents.map(({ _id, title, link, type }) => (
+            <Card  key={_id} id={_id} title={title} link={link} type={type}  onDelete={handleDelete}/>
+        ))}
         </div>
       </div>
     </div>

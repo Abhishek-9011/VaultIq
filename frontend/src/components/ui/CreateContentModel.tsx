@@ -14,6 +14,7 @@ enum ContentType {
   Youtube = "youtube",
   Twitter = "twitter",
 }
+
 const CreateContentModel = ({ open, onClose }: ModelProps) => {
   const [modelOpen, setModelOpen] = useState(false);
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const CreateContentModel = ({ open, onClose }: ModelProps) => {
         },
       }
     );
-    onClose()
+    onClose();
   }
   return (
     <div>

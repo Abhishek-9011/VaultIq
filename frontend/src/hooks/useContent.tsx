@@ -4,6 +4,11 @@ import { BACKEND_URL } from "../config";
 
 export const useContent = () => {
   const [contents, setContent] = useState([]);
+  const handleDelete = (deletedId: string) => {
+    //@ts-ignore
+    setContent(prev => prev.filter(content => content._id !== deletedId));
+    window.location.reload();
+  };
     const refresh = () => {
     axios
       .get(`${BACKEND_URL}/api/v1/content`, {
@@ -22,5 +27,7 @@ export const useContent = () => {
       clearInterval(interval);
     };
   }, []);
-  return {contents, refresh};
+
+  
+  return {contents, refresh, handleDelete};
 };
