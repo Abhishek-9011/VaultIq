@@ -1,4 +1,3 @@
-import { JWT_PASSWORD } from "../config/Token";
 import Content from "../models/content.model";
 import Link from "../models/link.model";
 import User from "../models/user.model";

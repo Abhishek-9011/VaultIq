@@ -1,33 +1,56 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BACKEND_URL } from "../config";
 
 export const useContent = () => {
-  const [contents, setContent] = useState([]);
+  const [allContents, setAllContents] = useState([]);
+  const [contents, setContents] = useState([]);
+
   const handleDelete = (deletedId: string) => {
     //@ts-ignore
-    setContent(prev => prev.filter(content => content._id !== deletedId));
-    window.location.reload();
+    setAllContents((prev) => prev.filter((c) => c._id !== deletedId));
+    //@ts-ignore
+    setContents((prev) => prev.filter((c) => c._id !== deletedId));
   };
-    const refresh = () => {
+
+  const filterTwitter = () => {
+    //@ts-ignore
+    setContents(allContents.filter((c) => c.type === "twitter"));
+  };
+
+  const filterYoutube = () => {
+    //@ts-ignore
+    setContents(allContents.filter((c) => c.type === "youtube"));
+  };
+
+  const showAll = () => {
+    setContents(allContents);
+  };
+
+  const refresh = () => {
     axios
-      .get(`${BACKEND_URL}/api/v1/content`, {
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/content`, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
       })
       .then((response) => {
-        setContent(response.data.content);
+        setAllContents(response.data.content);
+        setContents(response.data.content);
       });
   };
+
   useEffect(() => {
     refresh();
-    let interval = setInterval(refresh, 10 * 2000);
-    return () => {
-      clearInterval(interval);
-    };
+    const interval = setInterval(refresh, 10 * 2000);
+    return () => clearInterval(interval);
   }, []);
 
-  
-  return {contents, refresh, handleDelete};
+  return {
+    contents,
+    refresh,
+    handleDelete,
+    filterTwitter,
+    filterYoutube,
+    showAll,
+  };
 };

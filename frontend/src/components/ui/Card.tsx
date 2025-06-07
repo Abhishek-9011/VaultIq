@@ -2,7 +2,7 @@ import axios from "axios";
 import AddIcon from "../../icons/AddIcon";
 import DeleteIcon from "../../icons/DeleteIcon";
 import ShareIcon from "../../icons/ShareIcon";
-import { BACKEND_URL } from "../../config";
+
 
 interface CardProps {
   id: string;
@@ -18,7 +18,7 @@ const Card = ({ id, title, link, type }: CardProps) => {
     : link;
   const deleteCard = async () => {
     try {
-      await axios.delete(`${BACKEND_URL}/api/v1/content`, {
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/v1/content`, {
         data: { contentId: id }, // Send contentId in the request body
         headers: {
           Authorization: localStorage.getItem("token"),

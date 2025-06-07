@@ -4,9 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.signin = exports.signup = void 0;
-const Token_1 = require("../config/Token");
 const user_model_1 = __importDefault(require("../models/user.model"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const signup = async (req, res) => {
     const { username, password } = req.body;
     try {
@@ -28,7 +29,9 @@ const signin = async (req, res) => {
         if (existingUser) {
             const token = jsonwebtoken_1.default.sign({
                 id: existingUser._id,
-            }, Token_1.JWT_PASSWORD);
+            }, 
+            // @ts-ignore
+            process.env.JWT_PASSWORD);
             res.json({ message: "user signed in successfully", token: token });
         }
     }

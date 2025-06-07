@@ -1,7 +1,7 @@
-import { JWT_PASSWORD } from "../config/Token";
 import User from "../models/user.model";
 import jwt from "jsonwebtoken";
-
+import dotenv from "dotenv";
+dotenv.config();
 export const signup = async (req: any, res: any) => {
   const { username, password } = req.body;
   try {
@@ -25,7 +25,7 @@ export const signin = async (req: any, res: any) => {
           id: existingUser._id,
         },
         // @ts-ignore
-        JWT_PASSWORD
+        process.env.JWT_PASSWORD
       );
       res.json({ message: "user signed in successfully", token: token });
     }

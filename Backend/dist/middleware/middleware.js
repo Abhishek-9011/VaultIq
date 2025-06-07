@@ -5,11 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userMiddleware = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const Token_1 = require("../config/Token");
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const userMiddleware = (req, res, next) => {
     const token = req.headers["authorization"];
-    console.log(token);
-    const decoded = jsonwebtoken_1.default.verify(token, Token_1.JWT_PASSWORD);
+    // console.log(token);
+    // @ts-ignore
+    const decoded = jsonwebtoken_1.default.verify(token, process.env.JWT_PASSWORD);
     if (decoded) {
         //@ts-ignore
         req.userId = decoded.id;

@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { BACKEND_URL } from "../../config";
 import { useParams } from "react-router-dom";
 import Card from "./Card";
 import Sidebar from "./Sidebar";
@@ -17,7 +16,7 @@ const SharableDashboard = () => {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const res = await axios.get(`${BACKEND_URL}/api/v1/brain/${shareLink}`);
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/v1/brain/${shareLink}`);
         setContent(res.data.content);
         setUsername(res.data.username);
       } catch (err) {
@@ -59,7 +58,7 @@ const SharableDashboard = () => {
             variant="primary"
             onClick={async () => {
               const response = await axios.post(
-                `${BACKEND_URL}/api/v1/brain/share`,
+                `${import.meta.env.VITE_BACKEND_URL}/api/v1/brain/share`,
                 { share: true },
                 {
                   headers: {
