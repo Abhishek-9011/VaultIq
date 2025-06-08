@@ -36,6 +36,7 @@ const Dashboard = () => {
         response.data.hash
       }`;
       alert(shareUrl);
+
     } catch (error) {
       console.error("Sharing failed:", error);
       alert("Failed to generate share link. Please try again.");
