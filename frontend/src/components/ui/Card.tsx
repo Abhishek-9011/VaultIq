@@ -1,7 +1,5 @@
 import axios from "axios";
-import AddIcon from "../../icons/AddIcon";
 import DeleteIcon from "../../icons/DeleteIcon";
-import ShareIcon from "../../icons/ShareIcon";
 
 interface CardProps {
   id: string;
