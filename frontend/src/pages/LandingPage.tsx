@@ -149,7 +149,12 @@ const VaultIQLanding: React.FC = () => {
               >
                 Pricing
               </a>
-              <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-2 rounded-full font-semibold transition-all duration-300">
+              <button
+                onClick={() => {
+                  navigate("/signin");
+                }}
+                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-2 rounded-full font-semibold transition-all duration-300"
+              >
                 Get Started
               </button>
             </div>
