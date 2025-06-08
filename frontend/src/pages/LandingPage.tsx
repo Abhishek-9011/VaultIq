@@ -7,7 +7,6 @@ import {
   Search,
   Zap,
   Shield,
-  Users,
   ArrowRight,
   Menu,
   X,

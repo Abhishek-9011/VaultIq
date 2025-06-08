@@ -34,7 +34,6 @@ const CreateContentModel = ({ open, onClose }: ModelProps) => {
 
     try {
       // Replace with your actual API call
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate API call
 
       await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/v1/content`,

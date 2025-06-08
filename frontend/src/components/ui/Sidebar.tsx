@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Logo from "../../icons/Logo";
 import SidebarItem from "./SidebarItem";
 import Twitter from "../../icons/Twitter";

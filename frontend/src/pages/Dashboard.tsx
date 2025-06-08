@@ -10,7 +10,6 @@ import axios from "axios";
 const Dashboard = () => {
   const {
     contents,
-    refresh,
     handleDelete,
     filterTwitter,
     filterYoutube,
@@ -32,9 +31,8 @@ const Dashboard = () => {
           },
         }
       );
-      const shareUrl = `${import.meta.env.VITE_BACKEND_URL}/share/${
-        response.data.hash
-      }`;
+      const shareUrl = `${window.location.origin}/share/${response.data.hash}`;
+
       alert(shareUrl);
 
     } catch (error) {
