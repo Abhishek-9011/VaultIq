@@ -9,9 +9,10 @@ interface SidebarProps {
   filterTwitter?: () => void;
   filterYoutube?: () => void;
   showAll?: () => void;
+   onCollapseChange?: (isCollapsed: boolean) => void;
 }
 
-const Sidebar = ({ filterTwitter, filterYoutube, showAll }: SidebarProps) => {
+const Sidebar = ({ filterTwitter, filterYoutube, showAll, onCollapseChange  }: SidebarProps) => {
   const [activeFilter, setActiveFilter] = useState<string>("all");
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -21,9 +22,10 @@ const Sidebar = ({ filterTwitter, filterYoutube, showAll }: SidebarProps) => {
   };
 
   const toggleSidebar = () => {
-    setIsCollapsed(!isCollapsed);
+    const newState = !isCollapsed;
+    setIsCollapsed(newState);
+    onCollapseChange?.(newState);
   };
-
   const handleLogout = () => {
     // Show confirmation dialog
     const confirmLogout = window.confirm("Are you sure you want to logout?");
@@ -52,10 +54,10 @@ const Sidebar = ({ filterTwitter, filterYoutube, showAll }: SidebarProps) => {
   return (
     <div
       className={`
-        h-screen bg-gradient-to-b from-gray-50 to-white 
-        border-r border-gray-200 fixed left-0 top-0 
-        transition-all duration-300 ease-in-out shadow-lg flex flex-col
-        ${isCollapsed ? "w-16" : "w-72"}
+       h-screen bg-gradient-to-b from-gray-50 to-white 
+    border-r border-gray-200 fixed left-0 top-0 z-50
+    transition-all duration-300 ease-in-out shadow-lg flex flex-col
+    ${isCollapsed ? "w-16" : "w-72"}
       `}
     >
       {/* Header */}

@@ -5,7 +5,7 @@ interface CardProps {
   id: string;
   title: string;
   link: string;
-  type: "twitter" | "youtube";
+  type: string;
   sharable?: boolean;
   onDelete?: (id: string) => void;
 }
