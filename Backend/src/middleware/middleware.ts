@@ -8,7 +8,6 @@ export const userMiddleware = (
   next: NextFunction
 ) => {
   const token = req.headers["authorization"];
-  // console.log(token);
   // @ts-ignore
   const decoded = jwt.verify(token as string, process.env.JWT_PASSWORD);
   if (decoded) {
