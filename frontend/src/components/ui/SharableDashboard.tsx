@@ -36,7 +36,7 @@ const SharableDashboard = () => {
         {/* Content cards */}
         <div className="flex flex-wrap gap-4">
           {content.map(({ _id, title, link, type }) => (
-            <Card key={_id} id={_id} title={title} link={link} type={type} />
+            <Card key={_id} id={_id} title={title} link={link} type={type}  sharable={true}/>
           ))}
         </div>
       </div>

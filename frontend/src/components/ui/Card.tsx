@@ -3,16 +3,16 @@ import AddIcon from "../../icons/AddIcon";
 import DeleteIcon from "../../icons/DeleteIcon";
 import ShareIcon from "../../icons/ShareIcon";
 
-
 interface CardProps {
   id: string;
   title: string;
   link: string;
   type: "twitter" | "youtube";
+  sharable?: boolean;
   onDelete?: (id: string) => void;
 }
 
-const Card = ({ id, title, link, type }: CardProps) => {
+const Card = ({ id, title, link, type, sharable }: CardProps) => {
   const embedYoutubeLink = link.includes("watch")
     ? link.replace("watch?v=", "embed/")
     : link;
@@ -33,24 +33,21 @@ const Card = ({ id, title, link, type }: CardProps) => {
     <div>
       <div className="p-4 bg-white rounded-md border border-gray-200 max-w-72">
         <div className="flex justify-between">
-          <div className="flex items-center text-sm">
-            <div className="text-gray-500 pr-2">
-              <AddIcon size="md" />
-            </div>
-            {title}
-          </div>
+          <div className="flex font-bold items-center text-sm">{title}</div>
           <div className="flex items-center">
             <a
               href={link}
               target="_blank"
               rel="noopener noreferrer"
               className="pr-2 text-gray-500"
-            >
-              <ShareIcon />
-            </a>
-            <div className="text-gray-500" onClick={deleteCard}>
-              <DeleteIcon />
-            </div>
+            ></a>
+            {sharable ? (
+              ""
+            ) : (
+              <div className="text-gray-500" onClick={deleteCard}>
+                <DeleteIcon />
+              </div>
+            )}
           </div>
         </div>
         <div className="pt-4">
