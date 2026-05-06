@@ -1,6 +1,5 @@
 import { useRef } from "react";
-import { Input } from "../../components/ui/Input";
-import { Button } from "../../components/ui/Buttons";
+
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
