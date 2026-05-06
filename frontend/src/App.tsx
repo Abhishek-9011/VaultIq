@@ -5,10 +5,11 @@ import SignIn from "./pages/Auth/SignIn";
 import SharableDashboard from "./components/ui/SharableDashboard";
 import LandingPage from "./pages/LandingPage";
 import ProtectedRoute from "./pages/Auth/ProtectedRoute";
-
+import { Toaster } from "react-hot-toast";
 const App = () => {
   return (
     <div>
+      <Toaster position="top-right" />
       <BrowserRouter>
         <Routes>
           <Route
@@ -19,7 +20,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route path="/" element={<LandingPage />} />x
+          <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/share/:shareLink" element={<SharableDashboard />} />
           <Route path="/signin" element={<SignIn />} />
